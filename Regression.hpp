@@ -2,9 +2,9 @@
 #define REGRESSION_HPP
 #include <array>
 #include <cmath>
-#include <numeric>
-#include <iostream>
 #include <iomanip>
+#include <iostream>
+#include <numeric>
 
 /////////////////////////////////////////////////|
 // Class declaration ////////////////////////////|
@@ -18,7 +18,7 @@ class Regression {
   Ptr* y_vector;
 
  public:
-  Regression(int n, Ptr* x_values, Ptr*  y_values)
+  Regression(int n, Ptr* x_values, Ptr* y_values)
       : n_points{n}, x_vector{x_values}, y_vector{y_values} {}
 
   double x_sum = std::accumulate(x_vector, x_vector + n_points, 0.);
@@ -44,10 +44,11 @@ inline double Regression<Ptr>::sum_squares(Ptr* first, Ptr* last, double init) {
 }
 
 template <class Ptr>
-inline double Regression<Ptr>::sum_couple(int n, Ptr* x_first, Ptr* y_first, double init) {
+inline double Regression<Ptr>::sum_couple(int n, Ptr* x_first, Ptr* y_first,
+                                          double init) {
   for (int i = 0; i != n; ++i) {
     double x = *x_first;
-    double y = *y_first;  
+    double y = *y_first;
     init += x * y;
     ++x_first;
     ++y_first;
@@ -67,12 +68,15 @@ inline std::array<double, 2> Regression<Ptr>::parameters() {
 
 template <class Ptr>
 inline void Regression<Ptr>::print_pretty(std::array<double, 2>& result) {
-	using namespace std;
-	cout << left << setfill('-') << setw(25) << "+" << "+" << '\n';
-	cout << setfill(' ') << setw(25) << "|Estimated parameters:" << "|" << '\n';
-	cout << setw(11) << "|Costant =" << setw(14) << result[0] << "|" << '\n'; 
-	cout << setw(11) << "|Slope =" << setw(14) << result[1] << "|" << '\n';
-	cout << setfill('-') << setw(25) << "+" << "+" << '\n';
+  using namespace std;
+  cout << left << setfill('-') << setw(25) << "+"
+       << "+" << '\n';
+  cout << setfill(' ') << setw(25) << "|Estimated parameters:"
+       << "|" << '\n';
+  cout << setw(11) << "|Costant =" << setw(14) << result[0] << "|" << '\n';
+  cout << setw(11) << "|Slope =" << setw(14) << result[1] << "|" << '\n';
+  cout << setfill('-') << setw(25) << "+"
+       << "+" << '\n';
 }
 
 #endif
