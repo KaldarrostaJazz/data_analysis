@@ -38,7 +38,7 @@ TEST_CASE("TEST N. 2") {
         for (int i = 0; i != 3; ++i) {
                 y_values[i] = -3.99 + 4 * x_values[i];
         }
-        Regression<std::vector<double>> reg{3, x_values, y_values};
+        Regression<std::vector<double>::iterator> reg{3, x_values.begin(), y_values.begin()};
         auto result = reg.parameters();
         CHECK(result[0] == doctest::Approx(-3.99));
         CHECK(result[1] == doctest::Approx(4));
