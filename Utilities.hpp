@@ -2,7 +2,6 @@
 #define UTILITIES_HPP
 
 #include <cassert>
-#include <cmath>
 #include <stdexcept>
 #include <vector>
 //////////////////////////////////////////////////
@@ -28,7 +27,7 @@ inline double Fit::Chi_Square(std::vector<double>& expected) {
   int N = observed.size();
   double chi = 0.;
   for (int i = 0; i != N; ++i)
-    chi += std::pow(observed[i] - expected[i], 2) / expected[i];
+    chi += (observed[i] - expected[i]) * (observed[i] - expected[i]) / expected[i];
   assert(chi >= 0.);
   return chi;
 }
